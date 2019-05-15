@@ -4,13 +4,14 @@
 # If the user enters anything other than a valid number
 # catch it with a try/except and put out an appropriate message and ignore the number.
 # Enter 7, 2, bob, 10, and 4 and match the output below.
-
+largest_so_far = -1000
+smallest_so_far = 1000
 while True:
     tmp = input("Enter an integer: ")
     if tmp == "done":
         break
     try:
-        tmp = integer(tmp)
+        tmp = int(tmp)
     except:
         print('Invalid input')
         continue
