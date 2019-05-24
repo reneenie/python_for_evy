@@ -20,3 +20,11 @@ print(word[2:])
 # functions in string library
 greet = 'Hi'
 print(greet.lower())
+
+# str.find()
+
+# str.strip()
+## str.lstrip()
+## str.rstrip()
+
+# str.replace()
