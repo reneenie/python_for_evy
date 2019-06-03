@@ -1,85 +1,53 @@
-# list mutable
-# two ways to loop through a list
+# dictionary
+# key + value combo
 
-letters = ['a', 'd', 'r']
-
-# 1. iteration loop
-for letter in letters:
-    print('The list has letter',letter)
-
-# 2. counted loop
-for i in range(len(letters)):
-    letter = letters[i]
-    # if you want to use + to connect output strings w/o space, like in java,
-    # need to convert it to string first
-    print('The '+str(i)+'th','letter is', letter)
-
-# concatenating lists
-list_a = [2,4,6]
-list_b = [1,5,7]
-print(list_a+list_b)
-
-# slicing lists
-# up to but not including
-
-
-# building lists from scratch
-a = []
-a.append(9)
-a.append(2)
-a.append(6)
-print(a)
-print(a.append(3)) # cannot print any function within the class that mutate the object
-
-# sort lists
-a.sort()
+# one useful way: word count
+a = dict()
+a['Amy']=1
+a['Eason']=2
+a['Bob']=1
 print(a)
 
-# calculation within lists
-print(sum(a))
-print(len(a))
-print(max(a))
-print(min(a))
+######### histgram results of dictionary
+words = ['a','v','a','c','c','a']
+tmp = dict()
+for key in words:
+    if not key in tmp:
+        tmp[key] = 1
+    else: tmp[key] = tmp[key]+1
+print(tmp)
 
-# list and strings
-# stuff = letters.split()
-# print(stuff)
-# for letter in stuff:
-#     print(letter)
+# get method in dictionary
+tmp2 = dict()
+for key in words:
+    tmp2[key] = tmp2.get(key,0)+1
+print(tmp2)
+## 0 is the default value for keys not in the dictionary
 
-# specify delimiter in split()
 
-# assignment 1 by lei
-file = open('romeo.txt')
-words = []
-for line in file:
-    tmp = line.strip().split()
-    for word in tmp:
-        if word in words:
-            continue
-        words.append(word)
-words.sort()
-print(words)
+######### tuples data structure
+# output a list of keys
+print('output of list:',list(tmp))
+print('output of keys method:',tmp.keys())
+# output a list of values
+print('output of values method:',tmp.values())
 
-# assignment2 by lei
-file2 = open('mbox-short.txt')
-count = 0
-for line in file2:
-    line.strip()
-    if not line.startswith('From '):
-        continue
-    line_list = line.split()
-    count += 1
-    print(line_list[1])
-print('There were',count,'lines in the file with From as the first word')
 
-# assignment 2 better:
-file2 = open('mbox-short.txt')
-count2 = 0
-for l in file2:
-    wd = l.rstrip().split()
-    if len(wd) < 2 or wd[0] != 'From':
-        continue
-    count2 += 1
-    print(wd[1])
-print('There were',count2,'lines in the file with From as the first word')
+# use item method to get tuples
+print('output of item method:',tmp.items())
+
+######### bonus: two iteration variables in python
+for key, value in tmp:
+
+
+
+######### Chap 9 quiz
+stuff = dict()
+print(stuff.get('candy',-1))
+
+
+######### Chapt 9 assignment
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+for line in handle:
