@@ -1,5 +1,16 @@
-# dictionary
-# key + value combo
+# Tuple data structure
+# 1. immutable: cannot be modified
+
+
+# things not to do with tuple
+######### will return traceback!!!
+# tuple.sort()
+# tuple.append()
+# tuple.reverse()
+
+
+
+
 
 # one useful way: word count
 a = dict()
