@@ -8,69 +8,75 @@
 # tuple.append()
 # tuple.reverse()
 
+# assign values to tuple
+(x,y) = ('Amy', 4)
+print((x,y))
+
+# compare tuple
+# compare the first one first.
+# if the first ones are equal, goes to the second one and so on
+
+print((0,1,2) < (5,0,1))
+print((0,0,1) < (0,2,1))
+print(('B','a','A') < ('a','a','A')) # uppercase always < lowercase, and posterior letters > prior letters
 
 
+### key difference between tuples and lists
+# it doesn't have to build these structures to be changeable,
+# and so they're just more efficient and more performant than lists.
+# for Lists, you have to actually allocate extra memory and stuff like that to let them be changed
+
+# quiz
+# x , y = 3, 4
+# print('y:',y)
 
 
-# one useful way: word count
+# sorting dictionary using key order
+# ! keys in dictionary have to be unique
+# ! dictionary doesn't record order
+
 a = dict()
 a['Amy']=1
 a['Eason']=2
 a['Bob']=1
 print(a)
 
-######### histgram results of dictionary
-words = ['a','v','a','c','c','a']
-tmp = dict()
-for key in words:
-    if not key in tmp:
-        tmp[key] = 1
-    else: tmp[key] = tmp[key]+1
-print(tmp)
+# 1. sort tuples by key orders
+a_sortbyKey = sorted(a.items())
+for k, v in a_sortbyKey:
+    print('sort tuples by key orders',k,v)
 
-# get method in dictionary
-tmp2 = dict()
-for key in words:
-    tmp2[key] = tmp2.get(key,0)+1
-print(tmp2)
-## 0 is the default value for keys not in the dictionary
+# 2. sort tuples by value orders
+tmp = []
+for k,v in sorted(a.items()):
+    tmp.append((v,k))
+a_sortbyValue = sorted(tmp,reverse=True)
+for v,k in a_sortbyValue:
+    print('sort tuples by value orders',k,v)
 
+########## List comprehension
+# format: [ expression for item in list if conditional ]
+# equivalent to
+# for item in list:
+#     if conditional:
+#         expression
 
-######### tuples data structure
-# output a list of keys
-print('output of list:',list(tmp))
-print('output of keys method:',tmp.keys())
-# output a list of values
-print('output of values method:',tmp.values())
+print(sorted([(v,k) for k,v in a.items()],reverse = True))
 
 
-# use item method to get tuples
-print('output of item method:',tmp.items())
-
-######### bonus: two iteration variables in python
-
-
-
-######### Chap 9 quiz
-stuff = dict()
-print(stuff.get('candy',-1))
-
-
-######### Chapt 9 assignment
+########## Assignment ###############
 name = input("Enter file:")
 if len(name) < 1 : name = "mbox-short.txt"
 handle = open(name)
-sender = dict()
+hour_dict = dict()
 for line in handle:
-    if not line.startswith('From:'):
+    parts = line.split()
+    if line.startswith('From') == False or len(parts) < 6:
         continue
-    words = line.split()
-    sender[words[1]] = sender.get(words[1],0)+1
-# print(sender)
-maxcount = 0
-maxaddress = None
-for key, value in sender.items():
-    if maxcount == 0 or value > maxcount:
-        maxcount = value
-        maxaddress = key
-print(maxaddress, maxcount)
+    timestamp = parts[5]
+    print(timestamp)
+    time = timestamp.split(':')
+    hour_dict[time[0]] = hour_dict.get(time[0],0)+1
+
+for k,v in sorted(hour_dict.items()):
+    print(k,v)
